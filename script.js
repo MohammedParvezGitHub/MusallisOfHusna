@@ -1,5 +1,4 @@
 import { createClient } from 'jsr:@supabase/supabase-js@2'
-
 //const { createClient } = supabase
 
 // Replace with your Supabase URL and public API key
