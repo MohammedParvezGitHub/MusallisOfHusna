@@ -1,16 +1,9 @@
-//const { createClient } = supabase;
+import { createClient } from '@supabase/supabase-js';
 
 // Replace with your Supabase URL and public API key
-//const supabaseUrl = 'YOUR_SUPABASE_URL';
-//const supabaseKey = 'YOUR_SUPABASE_KEY';
-//const supabase = createClient(supabaseUrl, supabaseKey);
-
-
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xdnhubGtuenlzaWp0emhiaXloIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMjY3MDMyNSwiZXhwIjoyMDM4MjQ2MzI1fQ.jIyioDs9ZgnLY4xs7rl0mFMU3Icppl5MzFf_87mzluU'
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xdnhubGtuenlzaWp0emhiaXloIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMjY3MDMyNSwiZXhwIjoyMDM4MjQ2MzI1fQ.jIyioDs9ZgnLY4xs7rl0mFMU3Icppl5MzFf_87mzluU';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const recordList = document.getElementById('recordList');
 const nameInput = document.getElementById('nameInput');
@@ -49,11 +42,7 @@ async function loadHomes() {
 }
 
 // Add new record
- 
-}
-
-function addRecord() {
-    alert('Working')
+async function addRecord() {
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
     const contact = contactInput.value.trim();
@@ -71,9 +60,14 @@ function addRecord() {
         addressInput.value = '';
         loadRecords();
     }
-
-
+}
 
 // Load homes and records on page load
 loadHomes();
 loadRecords();
+
+// Add event listener to handle form submission
+document.getElementById('addRecordForm').addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    addRecord();
+});
