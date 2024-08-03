@@ -50,6 +50,7 @@ async function loadHomes() {
 
 // Add new record
 async function addRecord() {
+    alert('Working')
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
     const contact = contactInput.value.trim();
