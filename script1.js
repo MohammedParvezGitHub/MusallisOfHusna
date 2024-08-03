@@ -1,3 +1,0 @@
-function addRecord() {
-alert('Working')  
-}
