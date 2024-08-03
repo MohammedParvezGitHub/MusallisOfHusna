@@ -49,7 +49,10 @@ async function loadHomes() {
 }
 
 // Add new record
- function addRecord() {
+ 
+}
+
+function addRecord() {
     alert('Working')
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
@@ -68,7 +71,8 @@ async function loadHomes() {
         addressInput.value = '';
         loadRecords();
     }
-}
+
+
 
 // Load homes and records on page load
 loadHomes();
