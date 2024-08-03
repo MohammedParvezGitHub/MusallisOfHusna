@@ -1,5 +1,5 @@
-//import { createClient } from '@supabase/supabase-js';
-const { createClient } = supabase
+import { createClient } from '@supabase/supabase-js';
+//const { createClient } = supabase
 
 // Replace with your Supabase URL and public API key
 const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co';
