@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
+
 // Replace with your Supabase URL and public API key
 const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xdnhubGtuenlzaWp0emhiaXloIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMjY3MDMyNSwiZXhwIjoyMDM4MjQ2MzI1fQ.jIyioDs9ZgnLY4xs7rl0mFMU3Icppl5MzFf_87mzluU';
