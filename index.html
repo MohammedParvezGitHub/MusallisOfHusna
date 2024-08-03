@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operations</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        input, select, button { margin: 5px; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h1>CRUD Operations</h1>
+    
+    <h2>Add a New Record</h2>
+    <form id="crudForm">
+        <input type="text" id="nameInput" placeholder="Name" required>
+        <input type="text" id="roleInput" placeholder="Role">
+        <input type="text" id="contactInput" placeholder="Contact">
+        <input type="text" id="addressInput" placeholder="Address">
+        <select id="homeSelect">
+            <!-- Options will be populated by JavaScript -->
+        </select>
+        <button type="button" onclick="addRecord()">Add Record</button>
+    </form>
+
+    <h2>Record List</h2>
+    <ul id="recordList">
+        <!-- Records will be populated by JavaScript -->
+    </ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
