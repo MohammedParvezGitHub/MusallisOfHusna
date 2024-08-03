@@ -1,0 +1,3 @@
+function addRecord() {
+alert('Working')
+}
