@@ -41,7 +41,7 @@ async function loadHomes() {
     });
 }
 
-// Add new record
+// Add new record 
 async function addRecord() {
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
