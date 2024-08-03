@@ -9,7 +9,7 @@ const recordList = document.getElementById('recordList');
 const nameInput = document.getElementById('nameInput');
 const roleInput = document.getElementById('roleInput');
 const contactInput = document.getElementById('contactInput');
-const addressInput = document.getElementById('addressInput');
+const addressInput = document.getElementById('addressInput'); 
 const homeSelect = document.getElementById('homeSelect');
 
 // Load records from Supabase
