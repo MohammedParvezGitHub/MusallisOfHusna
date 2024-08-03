@@ -1,16 +1,13 @@
-import { createClient } from 'jsr:@supabase/supabase-js@2'
-//const { createClient } = supabase
-
-// Replace with your Supabase URL and public API key
+// Initialize Supabase client using the global Supabase object
 const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xdnhubGtuenlzaWp0emhiaXloIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMjY3MDMyNSwiZXhwIjoyMDM4MjQ2MzI1fQ.jIyioDs9ZgnLY4xs7rl0mFMU3Icppl5MzFf_87mzluU';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = Supabase.createClient(supabaseUrl, supabaseKey);
 
 const recordList = document.getElementById('recordList');
 const nameInput = document.getElementById('nameInput');
 const roleInput = document.getElementById('roleInput');
 const contactInput = document.getElementById('contactInput');
-const addressInput = document.getElementById('addressInput'); 
+const addressInput = document.getElementById('addressInput');
 const homeSelect = document.getElementById('homeSelect');
 
 // Load records from Supabase
@@ -42,7 +39,7 @@ async function loadHomes() {
     });
 }
 
-// Add new record 
+// Add new record
 async function addRecord() {
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
