@@ -1,9 +1,16 @@
-const { createClient } = supabase;
+//const { createClient } = supabase;
 
 // Replace with your Supabase URL and public API key
-const supabaseUrl = 'YOUR_SUPABASE_URL';
-const supabaseKey = 'YOUR_SUPABASE_KEY';
-const supabase = createClient(supabaseUrl, supabaseKey);
+//const supabaseUrl = 'YOUR_SUPABASE_URL';
+//const supabaseKey = 'YOUR_SUPABASE_KEY';
+//const supabase = createClient(supabaseUrl, supabaseKey);
+
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 const recordList = document.getElementById('recordList');
 const nameInput = document.getElementById('nameInput');
