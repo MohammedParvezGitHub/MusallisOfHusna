@@ -1,5 +1,6 @@
 // Initialize Supabase client using the global Supabase object
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
 // Replace with your Supabase URL and public API key
 const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xdnhubGtuenlzaWp0emhiaXloIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMjY3MDMyNSwiZXhwIjoyMDM4MjQ2MzI1fQ.jIyioDs9ZgnLY4xs7rl0mFMU3Icppl5MzFf_87mzluU';
@@ -17,11 +18,20 @@ async function loadRecords() {
     const { data, error } = await supabase
         .from('musalli')
         .select('*, home(home_name)');
-    if (error) console.error(error);
+    if (error) {
+        console.error('Error loading records:', error);
+        return;
+    }
     recordList.innerHTML = '';
     data.forEach((record) => {
-        const li = document.createElement('li');
-        li.textContent = `${record.name} - ${record.role} - ${record.contact} - ${record.address} - Home: ${record.home.home_name}`;
+        const li = document.createElement('tr');
+        li.innerHTML = `
+            <td>${record.name}</td>
+            <td>${record.role}</td>
+            <td>${record.contact}</td>
+            <td>${record.address}</td>
+            <td>${record.home.home_name}</td>
+        `;
         recordList.appendChild(li);
     });
 }
@@ -31,8 +41,11 @@ async function loadHomes() {
     const { data, error } = await supabase
         .from('home')
         .select('*');
-    if (error) console.error(error);
-    homeSelect.innerHTML = '';
+    if (error) {
+        console.error('Error loading homes:', error);
+        return;
+    }
+    homeSelect.innerHTML = '<option value="">Select a home</option>';
     data.forEach((home) => {
         const option = document.createElement('option');
         option.value = home.id;
@@ -53,7 +66,10 @@ async function addRecord() {
         const { error } = await supabase
             .from('musalli')
             .insert([{ name, role, contact, address, home_id: homeId }]);
-        if (error) console.error(error);
+        if (error) {
+            console.error('Error adding record:', error);
+            return;
+        }
         nameInput.value = '';
         roleInput.value = '';
         contactInput.value = '';
@@ -67,7 +83,7 @@ loadHomes();
 loadRecords();
 
 // Add event listener to handle form submission
-document.getElementById('addRecordForm').addEventListener('submit', (event) => {
+document.getElementById('crudForm').addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent the default form submission
     addRecord();
 });
