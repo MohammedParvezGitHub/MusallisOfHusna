@@ -53,7 +53,7 @@ async function loadHomes() {
 }
 
 // Add new record
- function addRecord() {
+ async function addRecord() {
     alert('Working')
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
@@ -62,7 +62,7 @@ async function loadHomes() {
     const homeId = homeSelect.value;
 
     if (name) {
-        const { error } =  supabase
+        const { error } = await supabase
             .from('musalli')
             .insert([{ name, role, contact, address, home_id: homeId }]);
         if (error) {
