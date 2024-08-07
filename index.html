@@ -4,33 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        form { margin-bottom: 20px; }
-        input, select, button { margin: 5px; padding: 8px; }
+        .container { margin-top: 20px; }
+        .form-control, .form-select { margin-bottom: 10px; }
     </style>
 </head>
 <body>
-    <h2>Test</h2>
-    
-    <h3>Add a New Record</h3>
-    <form id="crudForm">
-        <input type="text" id="nameInput" placeholder="Name" required>
-        <input type="text" id="roleInput" placeholder="Role">
-        <input type="text" id="contactInput" placeholder="Contact">
-        <input type="text" id="addressInput" placeholder="Address">
-        <select id="homeSelect">
-            <!-- Options will be populated by JavaScript -->
-        </select>
-        <button type="button" id="addRecordBtn">Add Record</button>
-    </form>
+    <div class="container">
+        <h2 class="mb-4">Test</h2>
+        
+        <h3 class="mb-4">Add a New Record</h3>
+        <form id="crudForm">
+            <div class="form-group">
+                <input type="text" class="form-control" id="nameInput" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="roleInput" placeholder="Role">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="contactInput" placeholder="Contact">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="addressInput" placeholder="Address">
+            </div>
+            <div class="form-group">
+                <select id="homeSelect" class="form-select">
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+            <button type="button" id="addRecordBtn" class="btn btn-primary">Add Record</button>
+        </form>
 
-    <h2>Record List</h2>
-    <ul id="recordList">
-        <!-- Records will be populated by JavaScript -->
-    </ul>
+        <h2 class="mb-4">Record List</h2>
+        <ul id="recordList" class="list-group">
+            <!-- Records will be populated by JavaScript -->
+        </ul>
+    </div>
 
-    <!-- Include Supabase via CDN -->
+    <!-- Bootstrap JS and dependencies (Popper.js and jQuery) CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <!-- Your script file -->
     <script src="script.js" type="module"></script>
 </body>
