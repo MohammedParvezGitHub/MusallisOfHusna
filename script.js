@@ -62,7 +62,7 @@ async function loadHomes() {
     const homeId = homeSelect.value;
 
     if (name) {
-        const { error } = await supabase
+        const { error } =  supabase
             .from('musalli')
             .insert([{ name, role, contact, address, home_id: homeId }]);
         if (error) {
