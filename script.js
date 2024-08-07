@@ -26,10 +26,8 @@ async function loadRecords() {
     data.forEach((record) => {
         const li = document.createElement('tr');
         li.innerHTML = `
-            <td>${record.name}</td>
-            /*<td>${record.role}</td>*/
+            <td>${record.name}</td>          
             <td>${record.contact}</td>
-            /*<td>${record.address}</td>*/
             <td>${record.home.home_name}</td>
         `;
         recordList.appendChild(li);
