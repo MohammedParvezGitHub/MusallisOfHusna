@@ -54,7 +54,6 @@ async function loadHomes() {
 
 // Add new record
 async function addRecord() {
-    alert('working')
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
     const contact = contactInput.value.trim();
@@ -82,7 +81,8 @@ loadHomes();
 loadRecords();
 
 // Add event listener to handle form submission
-document.getElementById('crudForm').addEventListener('submit', (event) => {
+document.getElementById('crudForm').addEventListener('submit', (event) => {    
+    alert('working')
     event.preventDefault(); // Prevent the default form submission
     addRecord();
 });
