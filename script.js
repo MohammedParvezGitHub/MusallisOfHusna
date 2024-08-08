@@ -53,29 +53,33 @@ async function loadHomes() {
 }
 
 // Add new record
- async function addRecord() {
-    alert('Working')
-    const name = nameInput.value.trim();
-    const role = roleInput.value.trim();
-    const contact = contactInput.value.trim();
-    const address = addressInput.value.trim();
-    const homeId = homeSelect.value;
+ //async function addRecord() {
+//    const name = nameInput.value.trim();
+//    const role = roleInput.value.trim();
+//    const contact = contactInput.value.trim();
+//    const address = addressInput.value.trim();
+//    const homeId = homeSelect.value;
 
-    if (name) {
-        const { error } = await supabase
-            .from('musalli')
-            .insert([{ name, role, contact, address, home_id: homeId }]);
-        if (error) {
-            console.error('Error adding record:', error);
-            return;
-        }
-        nameInput.value = '';
-        roleInput.value = '';
-        contactInput.value = '';
-        addressInput.value = '';
-        loadRecords();
-    }
+//    if (name) {
+//        const { error } = await supabase
+//            .from('musalli')
+//            .insert([{ name, role, contact, address, home_id: homeId }]);
+//        if (error) {
+//            console.error('Error adding record:', error);
+//            return;
+//        }
+//        nameInput.value = '';
+//        roleInput.value = '';
+//        contactInput.value = '';
+//        addressInput.value = '';
+//        loadRecords();
+//    }
+//}
+
+function addRecord() {
+    alert('Working')
 }
+
 
 // Load homes and records on page load
 loadHomes();
