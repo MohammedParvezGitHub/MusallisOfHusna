@@ -80,7 +80,5 @@ async function loadHomes() {
 loadHomes();
 loadRecords();
 
-document.querySelector('.click').addEventListener('click', (e) => {
-  addRecord();
-});
+
 
