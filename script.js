@@ -75,7 +75,9 @@ async function loadHomes() {
         loadRecords();
     }
 }
-
+document.querySelector('.click').addEventListener('click', (e) => {
+        addRecord();
+    });
 // Load homes and records on page load
 loadHomes();
 loadRecords();
