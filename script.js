@@ -81,7 +81,6 @@ loadHomes();
 loadRecords();
 
 document.querySelector('.click').addEventListener('click', (e) => {
-  // Do whatever you want
   addRecord();
 });
 
