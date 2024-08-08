@@ -76,12 +76,11 @@ async function loadHomes() {
 //    }
 //}
 
-function addRecord() {
-    alert('Working')
-}
-
-
 // Load homes and records on page load
 loadHomes();
 loadRecords();
+
+function  addRecord() {
+    alert('Working')
+}
 
