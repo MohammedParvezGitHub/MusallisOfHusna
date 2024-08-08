@@ -53,28 +53,28 @@ async function loadHomes() {
 }
 
 // Add new record
- //async function addRecord() {
-//    const name = nameInput.value.trim();
-//    const role = roleInput.value.trim();
-//    const contact = contactInput.value.trim();
-//    const address = addressInput.value.trim();
-//    const homeId = homeSelect.value;
+  async function addRecord() {
+    const name = nameInput.value.trim();
+    const role = roleInput.value.trim();
+    const contact = contactInput.value.trim();
+    const address = addressInput.value.trim();
+    const homeId = homeSelect.value;
 
-//    if (name) {
-//        const { error } = await supabase
-//            .from('musalli')
-//            .insert([{ name, role, contact, address, home_id: homeId }]);
-//        if (error) {
-//            console.error('Error adding record:', error);
-//            return;
-//        }
-//        nameInput.value = '';
-//        roleInput.value = '';
-//        contactInput.value = '';
-//        addressInput.value = '';
-//        loadRecords();
-//    }
-//}
+    if (name) {
+        const { error } = await supabase
+            .from('musalli')
+            .insert([{ name, role, contact, address, home_id: homeId }]);
+        if (error) {
+            console.error('Error adding record:', error);
+            return;
+        }
+        nameInput.value = '';
+        roleInput.value = '';
+        contactInput.value = '';
+        addressInput.value = '';
+        loadRecords();
+    }
+}
 
 // Load homes and records on page load
 loadHomes();
@@ -82,6 +82,6 @@ loadRecords();
 
 document.querySelector('.click').addEventListener('click', (e) => {
   // Do whatever you want
-  e.target.textContent = 'Clicked!';
+  addRecord();
 });
 
