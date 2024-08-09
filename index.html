@@ -29,7 +29,7 @@
         <h2 class="mb-4">Test</h2>
 
         <h3 class="mb-4">Record List</h3>
-       <button type="button" class="btn btn-primary btn-margin-bottom" data-toggle="modal" data-target="#addRecordModal">Add New Record</button>
+        <button type="button" class="btn btn-primary btn-margin-bottom" data-toggle="modal" data-target="#addRecordModal">Add New Record</button>
 
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
@@ -40,6 +40,7 @@
                         <th>Contact</th>
                         <!--<th>Address</th>-->
                         <th>Home</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="recordList">
@@ -85,6 +86,48 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" id="addRecordBtn" class="btn btn-primary">Add Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal for Editing Record -->
+    <div class="modal fade" id="editRecordModal" tabindex="-1" role="dialog" aria-labelledby="editRecordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editRecordModalLabel">Edit Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCrudForm">
+                        <input type="hidden" id="editRecordId">
+                        <div class="form-row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" id="editNameInput" placeholder="Name" required>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" id="editRoleInput" placeholder="Role">
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" id="editContactInput" placeholder="Contact">
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" id="editAddressInput" placeholder="Address">
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <select id="editHomeSelect" class="form-select">
+                                    <!-- Options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="editRecordBtn" class="btn btn-primary">Update Record</button>
                 </div>
             </div>
         </div>
