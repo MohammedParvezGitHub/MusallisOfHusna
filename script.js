@@ -11,6 +11,13 @@ const contactInput = document.getElementById('contactInput');
 const addressInput = document.getElementById('addressInput');
 const homeSelect = document.getElementById('homeSelect');
 
+const editRecordId = document.getElementById('editRecordId');
+const editNameInput = document.getElementById('editNameInput');
+const editRoleInput = document.getElementById('editRoleInput');
+const editContactInput = document.getElementById('editContactInput');
+const editAddressInput = document.getElementById('editAddressInput');
+const editHomeSelect = document.getElementById('editHomeSelect');
+
 // Load records from Supabase
 async function loadRecords() {
     const { data, error } = await supabase
@@ -27,6 +34,10 @@ async function loadRecords() {
             <td>${record.name}</td>
             <td>${record.contact}</td>
             <td>${record.home.home_name}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" onclick="editRecord(${record.id})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteRecord(${record.id})">Delete</button>
+            </td>
         `;
         recordList.appendChild(row);
     });
@@ -42,11 +53,13 @@ async function loadHomes() {
         return;
     }
     homeSelect.innerHTML = '<option value="">Select a home</option>';
+    editHomeSelect.innerHTML = '<option value="">Select a home</option>';
     data.forEach((home) => {
         const option = document.createElement('option');
         option.value = home.id;
         option.textContent = home.home_name;
         homeSelect.appendChild(option);
+        editHomeSelect.appendChild(option.cloneNode(true));
     });
 }
 
@@ -79,9 +92,79 @@ async function addRecord() {
     }
 }
 
+// Edit a record
+async function editRecord(id) {
+    const { data, error } = await supabase
+        .from('musalli')
+        .select('*, home(home_name)')
+        .eq('id', id)
+        .single();
+    if (error) {
+        console.error('Error loading record for edit:', error);
+        return;
+    }
+    editRecordId.value = data.id;
+    editNameInput.value = data.name;
+    editRoleInput.value = data.role;
+    editContactInput.value = data.contact;
+    editAddressInput.value = data.address;
+    editHomeSelect.value = data.home_id;
+    $('#editRecordModal').modal('show'); // Show the edit modal
+}
+
+// Update a record
+async function updateRecord() {
+    const id = editRecordId.value;
+    const name = editNameInput.value.trim();
+    const role = editRoleInput.value.trim();
+    const contact = editContactInput.value.trim();
+    const address = editAddressInput.value.trim();
+    const homeId = editHomeSelect.value;
+
+    if (name) {
+        const { data, error } = await supabase
+            .from('musalli')
+            .update({ name, role, contact, address, home_id: homeId })
+            .eq('id', id);
+        if (error) {
+            console.error('Error updating record:', error);
+            return;
+        }
+        // Reset form fields and close the modal
+        editNameInput.value = '';
+        editRoleInput.value = '';
+        editContactInput.value = '';
+        editAddressInput.value = '';
+        editHomeSelect.value = '';
+        $('#editRecordModal').modal('hide'); // Hide the modal
+        loadRecords(); // Reload records
+    } else {
+        alert('Name field is required.');
+    }
+}
+
+// Delete a record
+async function deleteRecord(id) {
+    if (confirm('Are you sure you want to delete this record?')) {
+        const { data, error } = await supabase
+            .from('musalli')
+            .delete()
+            .eq('id', id);
+        if (error) {
+            console.error('Error deleting record:', error);
+            return;
+        }
+        loadRecords(); // Reload records
+    }
+}
+
 // Event listeners
 document.getElementById('addRecordBtn').addEventListener('click', () => {
     addRecord();
+});
+
+document.getElementById('editRecordBtn').addEventListener('click', () => {
+    updateRecord();
 });
 
 // Load homes and records on page load
