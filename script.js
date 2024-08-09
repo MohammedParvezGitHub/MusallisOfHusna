@@ -1,7 +1,5 @@
-// Initialize Supabase client using the global Supabase object
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-// Replace with your Supabase URL and public API key
 const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xdnhubGtuenlzaWp0emhiaXloIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMjY3MDMyNSwiZXhwIjoyMDM4MjQ2MzI1fQ.jIyioDs9ZgnLY4xs7rl0mFMU3Icppl5MzFf_87mzluU';
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -24,13 +22,13 @@ async function loadRecords() {
     }
     recordList.innerHTML = '';
     data.forEach((record) => {
-        const li = document.createElement('tr');
-        li.innerHTML = `
+        const row = document.createElement('tr');
+        row.innerHTML = `
             <td>${record.name}</td>
             <td>${record.contact}</td>
             <td>${record.home.home_name}</td>
         `;
-        recordList.appendChild(li);
+        recordList.appendChild(row);
     });
 }
 
@@ -53,7 +51,7 @@ async function loadHomes() {
 }
 
 // Add new record
-  async function addRecord() {
+async function addRecord() {
     const name = nameInput.value.trim();
     const role = roleInput.value.trim();
     const contact = contactInput.value.trim();
@@ -68,19 +66,24 @@ async function loadHomes() {
             console.error('Error adding record:', error);
             return;
         }
+        // Reset form fields and close the modal
         nameInput.value = '';
         roleInput.value = '';
         contactInput.value = '';
         addressInput.value = '';
-        loadRecords();
+        homeSelect.value = '';
+        $('#addRecordModal').modal('hide'); // Hide the modal
+        loadRecords(); // Reload records
+    } else {
+        alert('Name field is required.');
     }
 }
 
-document.querySelector('.click').addEventListener('click', (e) => {
-        addRecord();
-    });
+// Event listeners
+document.getElementById('addRecordBtn').addEventListener('click', () => {
+    addRecord();
+});
+
 // Load homes and records on page load
 loadHomes();
 loadRecords();
-
-
