@@ -61,7 +61,7 @@ async function loadHomes() {
     const homeId = homeSelect.value;
 
     if (name) {
-        const { error } = await supabase
+        const { data, error } = await supabase
             .from('musalli')
             .insert([{ name, role, contact, address, home_id: homeId }]);
         if (error) {
@@ -75,6 +75,7 @@ async function loadHomes() {
         loadRecords();
     }
 }
+
 document.querySelector('.click').addEventListener('click', (e) => {
         addRecord();
     });
