@@ -94,7 +94,7 @@ async function addRecord() {
 
 // Edit a record
 async function editRecord(id) {
-    const { data, error } = await supabase
+    const {data, error } = await supabase
         .from('musalli')
         .select('*, home(home_name)')
         .eq('id', id)
@@ -122,7 +122,7 @@ async function updateRecord() {
     const homeId = editHomeSelect.value;
 
     if (name) {
-        const { data, error } = await supabase
+        const {data, error } = await supabase
             .from('musalli')
             .update({ name, role, contact, address, home_id: homeId })
             .eq('id', id);
@@ -146,7 +146,7 @@ async function updateRecord() {
 // Delete a record
 async function deleteRecord(id) {
     if (confirm('Are you sure you want to delete this record?')) {
-        const { data, error } = await supabase
+        const {data, error } = await supabase
             .from('musalli')
             .delete()
             .eq('id', id);
