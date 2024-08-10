@@ -35,7 +35,7 @@ async function loadRecords() {
             <td>${record.contact}</td>
             <td>${record.home.home_name}</td>
             <td>
-                <button class="btn btn-warning btn-sm" onclick="{async () => {await this.editRecord(${record.id});} }">Edit</button>
+                <button class="btn btn-warning btn-sm" onclick="handleEdit(${record.id})">Edit</button>
                 <button class="btn btn-danger btn-sm" onclick="deleteRecord(${record.id})">Delete</button>
             </td>
         `;
@@ -156,6 +156,11 @@ async function deleteRecord(id) {
         }
         loadRecords(); // Reload records
     }
+}
+
+function handleEdit(id) {
+    // Call the async editRecord function
+    editRecord(id);
 }
 
 // Event listeners
