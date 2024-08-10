@@ -160,9 +160,9 @@ async function deleteRecord(id) {
 
 
 // Event listeners
-document.getElementById('Edit(1)').addEventListener('click', () => {
+
     editRecord(1)
-});
+
 
 document.getElementById('addRecordBtn').addEventListener('click', () => {
     addRecord();
