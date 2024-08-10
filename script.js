@@ -158,8 +158,14 @@ async function deleteRecord(id) {
     }
 }
 
-document.getElementsByClassName('btn-warning').addEventListener('click', () => {
-    editRecord(1);
+const buttons = document.getElementsByClassName('btn-warning');
+
+// Iterate over each button and add an event listener
+Array.from(buttons).forEach(button => {
+    button.addEventListener('click', () => {
+        // Replace '1' with dynamic data if needed, such as using data attributes
+        editRecord(1);
+    });
 });
 
 // Event listeners
