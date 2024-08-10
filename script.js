@@ -94,7 +94,7 @@ async function addRecord() {
 
 // Edit a record
 async function editRecord(id) {
-    const {data, error } = await supabase
+    const {data,error } = await supabase
         .from('musalli')
         .select('*, home(home_name)')
         .eq('id', id)
@@ -102,7 +102,7 @@ async function editRecord(id) {
     if (error) {
         console.error('Error loading record for edit:', error);
         return;
-    }
+ }
     editRecordId.value = data.id;
     editNameInput.value = data.name;
     editRoleInput.value = data.role;
