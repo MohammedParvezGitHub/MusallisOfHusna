@@ -160,9 +160,7 @@ async function deleteRecord(id) {
 
 
 // Event listeners
-document.getElementById('editRecord(1)').addEventListener('click', () => {
-    editRecord(1);
-});
+
     
 document.getElementById('addRecordBtn').addEventListener('click', () => {
     addRecord();
@@ -175,3 +173,7 @@ document.getElementById('editRecordBtn').addEventListener('click', () => {
 // Load homes and records on page load
 loadHomes();
 loadRecords();
+
+document.getElementById('editRecord(1)').addEventListener('click', () => {
+    editRecord(1);
+});
