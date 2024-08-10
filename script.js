@@ -162,7 +162,6 @@ document.getElementsByClassName('btn-warning').addEventListener('click', () => {
     editRecord(1);
 });
 
-
 // Event listeners
 document.getElementById('addRecordBtn').addEventListener('click', () => {
     addRecord();
