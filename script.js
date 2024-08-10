@@ -164,8 +164,6 @@ document.getElementById('editRecord(1)').addEventListener('click', () => {
     editRecord(1);
 });
     
-
-
 document.getElementById('addRecordBtn').addEventListener('click', () => {
     addRecord();
 });
