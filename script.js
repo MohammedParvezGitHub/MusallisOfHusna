@@ -158,10 +158,10 @@ async function deleteRecord(id) {
     }
 }
 
-function handleEdit(id) {
-    // Call the async editRecord function
-    editRecord(id);
-}
+document.getElementsByClassName('btn-warning').addEventListener('click', () => {
+    editRecord(1);
+});
+
 
 // Event listeners
 document.getElementById('addRecordBtn').addEventListener('click', () => {
