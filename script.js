@@ -174,6 +174,6 @@ document.getElementById('editRecordBtn').addEventListener('click', () => {
 loadHomes();
 loadRecords();
 
-document.getElementById('editRecord(1)').addEventListener('click', () => {
+document.getElementById('Edit(1)').addEventListener('click', () => {
     editRecord(1);
 });
