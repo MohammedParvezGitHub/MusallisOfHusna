@@ -94,7 +94,7 @@ async function addRecord() {
 
 // Edit a record
 async function editRecord(id) {
-    const {data,error } = await supabase
+    const {data, error } = await supabase
         .from('musalli')
         .select('*, home(home_name)')
         .eq('id', id)
