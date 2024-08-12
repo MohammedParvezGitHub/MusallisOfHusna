@@ -43,6 +43,7 @@ async function loadRecords() {
     });
 }
 
+
 // Load homes from Supabase
 async function loadHomes() {
     const { data, error } = await supabase
