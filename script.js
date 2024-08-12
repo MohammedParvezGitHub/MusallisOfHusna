@@ -35,7 +35,7 @@ async function loadRecords() {
             <td>${record.contact}</td>
             <td>${record.home.home_name}</td>
             <td>
-                <button class="btn btn-warning btn-sm btn-edit" data-id="${record.id}">Edit</button>
+                <button class="btn btn-warning btn-sm" onclick="onclickEdit(this.getAttribute('data-id'))" data-id="${record.id}" >Edit</button>
                 <button class="btn btn-danger btn-sm" id="Delete(${record.id})">Delete</button>
             </td>
         `;
@@ -175,16 +175,8 @@ document.getElementById('editRecordBtn').addEventListener('click', () => {
 loadHomes();
 loadRecords();
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all buttons with the class 'btn-edit'
-    const buttons = document.querySelectorAll('.btn-edit');
-
-    // Iterate over each button and attach an event listener
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const id = button.getAttribute('data-id');
-            editRecord(id);
-        });
-    });
-});
+function onclickEdit(id) {
+    alert('Edit record with ID:', id);
+    // Add your logic to handle the record edit
+}
 
