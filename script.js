@@ -19,6 +19,9 @@ const editAddressInput = document.getElementById('editAddressInput');
 const editHomeSelect = document.getElementById('editHomeSelect');
 
 // Load records from Supabase
+
+
+
 async function loadRecords() {
     const { data, error } = await supabase
         .from('musalli')
@@ -27,6 +30,7 @@ async function loadRecords() {
         console.error('Error loading records:', error);
         return;
     }
+    const recordList = document.getElementById('recordList');
     recordList.innerHTML = '';
     data.forEach((record) => {
         const row = document.createElement('tr');
@@ -35,14 +39,13 @@ async function loadRecords() {
             <td>${record.contact}</td>
             <td>${record.home.home_name}</td>
             <td>
-                <button class="btn btn-warning btn-sm" onclick="onclickEdit(this.getAttribute('data-id'))" data-id="${record.id}" >Edit</button>
-                <button class="btn btn-danger btn-sm" id="Delete(${record.id})">Delete</button>
+                <button class="btn btn-warning btn-sm editButton" data-id="${record.id}">Edit</button>
+                <button class="btn btn-danger btn-sm deleteButton" data-id="${record.id}">Delete</button>
             </td>
         `;
         recordList.appendChild(row);
     });
 }
-
 
 // Load homes from Supabase
 async function loadHomes() {
@@ -64,34 +67,7 @@ async function loadHomes() {
     });
 }
 
-// Add new record
-async function addRecord() {
-    const name = nameInput.value.trim();
-    const role = roleInput.value.trim();
-    const contact = contactInput.value.trim();
-    const address = addressInput.value.trim();
-    const homeId = homeSelect.value;
 
-    if (name) {
-        const { data, error } = await supabase
-            .from('musalli')
-            .insert([{ name, role, contact, address, home_id: homeId }]);
-        if (error) {
-            console.error('Error adding record:', error);
-            return;
-        }
-        // Reset form fields and close the modal
-        nameInput.value = '';
-        roleInput.value = '';
-        contactInput.value = '';
-        addressInput.value = '';
-        homeSelect.value = '';
-        $('#addRecordModal').modal('hide'); // Hide the modal
-        loadRecords(); // Reload records
-    } else {
-        alert('Name field is required.');
-    }
-}
 
 // Edit a record
 async function editRecord(id) {
@@ -113,7 +89,35 @@ async function editRecord(id) {
     $('#editRecordModal').modal('show'); // Show the edit modal
 }
 
-// Update a record
+async function addRecord() {
+    const name = nameInput.value.trim();
+    const role = roleInput.value.trim();
+    const contact = contactInput.value.trim();
+    const address = addressInput.value.trim();
+    const homeId = homeSelect.value;
+
+    if (name) {
+        const { data, error } = await supabase
+            .from('musalli')
+            .insert([{ name, role, contact, address, home_id: homeId }]);
+        if (error) {
+            console.error('Error adding record:', error);
+            showAlert('error', 'Error adding record. Please try again.');
+            return;
+        }
+        showAlert('success', 'Record successfully added!');
+        nameInput.value = '';
+        roleInput.value = '';
+        contactInput.value = '';
+        addressInput.value = '';
+        homeSelect.value = '';
+        $('#addRecordModal').modal('hide'); // Hide the modal
+        loadRecords(); // Reload records
+    } else {
+        alert('Name field is required.');
+    }
+}
+
 async function updateRecord() {
     const id = editRecordId.value;
     const name = editNameInput.value.trim();
@@ -123,15 +127,16 @@ async function updateRecord() {
     const homeId = editHomeSelect.value;
 
     if (name) {
-        const {data, error } = await supabase
+        const { data, error } = await supabase
             .from('musalli')
             .update({ name, role, contact, address, home_id: homeId })
             .eq('id', id);
         if (error) {
             console.error('Error updating record:', error);
+            showAlert('error', 'Error updating record. Please try again.');
             return;
         }
-        // Reset form fields and close the modal
+        showAlert('success', 'Record successfully updated!');
         editNameInput.value = '';
         editRoleInput.value = '';
         editContactInput.value = '';
@@ -144,20 +149,52 @@ async function updateRecord() {
     }
 }
 
-// Delete a record
-async function deleteRecord(id) {
-    if (confirm('Are you sure you want to delete this record?')) {
-        const {data, error } = await supabase
+function showAlert(type, message) {
+    const successAlert = document.getElementById('successAlert');
+    const errorAlert = document.getElementById('errorAlert');
+
+    if (type === 'success') {
+        successAlert.textContent = message;
+        successAlert.classList.remove('d-none');
+        errorAlert.classList.add('d-none');
+    } else if (type === 'error') {
+        errorAlert.textContent = message;
+        errorAlert.classList.remove('d-none');
+        successAlert.classList.add('d-none');
+    }
+
+    // Automatically hide the alert after 5 seconds
+    setTimeout(() => {
+        successAlert.classList.add('d-none');
+        errorAlert.classList.add('d-none');
+    }, 5000);
+}
+
+
+let recordIdToDelete = null;
+
+async function showConfirmDeleteModal(id) {
+    recordIdToDelete = id;
+    $('#confirmDeleteModal').modal('show');
+}
+
+document.getElementById('confirmDeleteBtn').addEventListener('click', async () => {
+    if (recordIdToDelete !== null) {
+        const { data, error } = await supabase
             .from('musalli')
             .delete()
-            .eq('id', id);
+            .eq('id', recordIdToDelete);
         if (error) {
             console.error('Error deleting record:', error);
+            showAlert('error', 'Error deleting record. Please try again.');
             return;
         }
+        showAlert('success', 'Record successfully deleted!');
         loadRecords(); // Reload records
+        $('#confirmDeleteModal').modal('hide'); // Hide the modal
+        recordIdToDelete = null;
     }
-}
+});
 
 
 // Event listeners
@@ -171,10 +208,24 @@ document.getElementById('editRecordBtn').addEventListener('click', () => {
     updateRecord();
 });
 
-export function onclickEdit(id) {
-    alert('Edit record with ID:', id);
-    // Add your logic to handle the record edit
-}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const recordList = document.getElementById('recordList'); // Make sure this ID matches your table body
+
+    // Event delegation for Edit and Delete buttons
+    recordList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('editButton')) {
+            const id = event.target.getAttribute('data-id');
+            editRecord(id); // Call your edit function
+        } else if (event.target.classList.contains('deleteButton')) {
+            const id = event.target.getAttribute('data-id');
+            //deleteRecord(id); // Call your delete function
+            showConfirmDeleteModal(id);
+        }
+    });
+});
+
 
 // Load homes and records on page load
 loadHomes();
