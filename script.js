@@ -35,7 +35,7 @@ async function loadRecords() {
             <td>${record.contact}</td>
             <td>${record.home.home_name}</td>
             <td>
-                <button class="btn btn-warning btn-sm btn-edit" data-id="${record.id}" ">Edit</button>
+                <button class="btn btn-warning btn-sm btn-edit" data-id="${record.id}">Edit</button>
                 <button class="btn btn-danger btn-sm" id="Delete(${record.id})">Delete</button>
             </td>
         `;
