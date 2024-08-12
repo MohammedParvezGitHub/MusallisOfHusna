@@ -1,3 +1,7 @@
+function onclickEdit(id) {
+    alert('Edit record with ID:', id);
+    // Add your logic to handle the record edit
+}
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 const supabaseUrl = 'https://oqvxnlknzysijtzhbiyh.supabase.co';
@@ -175,8 +179,5 @@ document.getElementById('editRecordBtn').addEventListener('click', () => {
 loadHomes();
 loadRecords();
 
-function onclickEdit(id) {
-    alert('Edit record with ID:', id);
-    // Add your logic to handle the record edit
-}
+
 
