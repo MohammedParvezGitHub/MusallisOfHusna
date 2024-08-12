@@ -30,6 +30,37 @@
 </head>
 <body>
     <div class="container">
+
+        <div id="alertContainer" class="mt-3">
+            <div id="successAlert" class="alert alert-success d-none" role="alert">
+                Record successfully saved!
+            </div>
+            <div id="errorAlert" class="alert alert-danger d-none" role="alert">
+                Something went wrong. Please try again.
+            </div>
+        </div>
+
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this record?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <h2 class="mb-4">Test</h2>
 
         <h3 class="mb-4">Record List</h3>
@@ -142,6 +173,19 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-     <script src="script.js" type="module"></script>
+    <!--<script type="module">
+        import { onclickEdit } from '/script.js';
+
+        // Get the button element
+        const editButton = document.getElementById('editButton');
+
+        // Set up click event listener
+        editButton.addEventListener('click', function () {
+            // Use the button's data-id attribute to pass the ID to the onclickEdit function
+            onclickEdit(this.getAttribute('data-id'));
+        });
+    </script>-->
+
+    <script src="script.js" type="module"></script>
 </body>
 </html>
