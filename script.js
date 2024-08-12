@@ -174,9 +174,13 @@ document.getElementById('editRecordBtn').addEventListener('click', () => {
 loadHomes();
 loadRecords();
 
-document.querySelectorAll('.btn-edit').forEach(button => {
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.btn-edit').forEach(button => {
     button.addEventListener('click', () => {
         const id = button.getAttribute('data-id');
         editRecord(id);
     });
+  });
 });
+
+
