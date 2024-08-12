@@ -175,11 +175,16 @@ document.getElementById('editRecordBtn').addEventListener('click', () => {
 loadHomes();
 loadRecords();
 
-  document.querySelectorAll('.btn-edit').forEach(button => {
-    button.addEventListener('click', () => {
-        const id = button.getAttribute('data-id');
-        editRecord(id);
-    });
-  });
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all buttons with the class 'btn-edit'
+    const buttons = document.querySelectorAll('.btn-edit');
 
+    // Iterate over each button and attach an event listener
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            editRecord(id);
+        });
+    });
+});
 
