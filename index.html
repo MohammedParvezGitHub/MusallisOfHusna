@@ -25,7 +25,21 @@
         }
         .btn-margin-bottom {
         margin-bottom: 20px; /* Adjust this value as needed */
-    }
+        }
+        .record-card {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+            .record-card h5 {
+                margin-bottom: 10px;
+            }
+
+            .record-card .actions {
+                margin-top: 10px;
+            }
     </style>
 </head>
 <body>
@@ -66,22 +80,26 @@
         <h3 class="mb-4">Record List</h3>
         <button type="button" class="btn btn-primary btn-margin-bottom" data-toggle="modal" data-target="#addRecordModal">Add New Record</button>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <!--<th>Role</th>-->
-                        <th>Contact</th>
-                        <!--<th>Address</th>-->
-                        <th>Home</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="recordList">
-                    <!-- Records will be populated by JavaScript -->
-                </tbody>
-            </table>
+        <!--<div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>-->
+        <!--<th>Role</th>-->
+        <!--<th>Contact</th>-->
+        <!--<th>Address</th>-->
+        <!--<th>Home</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="recordList">-->
+        <!-- Records will be populated by JavaScript -->
+        <!--</tbody>
+        </table>
+    </div>-->
+
+        <div id="recordList" class="row">
+            <!-- Records will be populated by JavaScript -->
         </div>
     </div>
 
