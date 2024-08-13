@@ -33,17 +33,20 @@ async function loadRecords() {
     const recordList = document.getElementById('recordList');
     recordList.innerHTML = '';
     data.forEach((record) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${record.name}</td>
-            <td>${record.contact}</td>
-            <td>${record.home.home_name}</td>
-            <td>
-                <button class="btn btn-warning btn-sm editButton" data-id="${record.id}">Edit</button>
-                <button class="btn btn-danger btn-sm deleteButton" data-id="${record.id}">Delete</button>
-            </td>
+        const card = document.createElement('div');
+        card.classList.add('col-12', 'col-md-6', 'col-lg-4');
+        card.innerHTML = `
+            <div class="record-card">
+                <h5>${record.name}</h5>
+                <p><strong>Contact:</strong> ${record.contact}</p>
+                <p><strong>Home:</strong> ${record.home.home_name}</p>
+                <div class="actions">
+                    <button class="btn btn-warning btn-sm editButton" data-id="${record.id}">Edit</button>
+                    <button class="btn btn-danger btn-sm deleteButton" data-id="${record.id}">Delete</button>
+                </div>
+            </div>
         `;
-        recordList.appendChild(row);
+        recordList.appendChild(card);
     });
 }
 
@@ -230,6 +233,3 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load homes and records on page load
 loadHomes();
 loadRecords();
-
-
-
