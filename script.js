@@ -222,10 +222,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event delegation for Edit and Delete buttons
     recordList.addEventListener('click', (event) => {
-        if (event.target.classList.contains('editButton')) {
+        if (event.target.classList.contains('editButton') || event.target.classList.contains('fa-edit')) {
             const id = event.target.getAttribute('data-id');
             editRecord(id); // Call your edit function
-        } else if (event.target.classList.contains('deleteButton')) {
+        } else if (event.target.classList.contains('deleteButton') || event.target.classList.contains('fa-trash-alt')) {
             const id = event.target.getAttribute('data-id');
             //deleteRecord(id); // Call your delete function
             showConfirmDeleteModal(id);
