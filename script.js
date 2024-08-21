@@ -42,10 +42,10 @@ async function loadRecords() {
                 <p><strong>Route:</strong> ${record.home.home_name}</p>
                 <div class="actions">
                     <button class="btn btn-warning btn-sm editButton" data-id="${record.id}">
-                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-edit" data-id="${record.id}"></i>
                     </button>
                     <button class="btn btn-danger btn-sm deleteButton" data-id="${record.id}">
-                        <i class="fas fa-trash-alt"></i>
+                        <i class="fas fa-trash-alt" data-id="${record.id}"></i>
                     </button>
                 </div>
             </div>
