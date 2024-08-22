@@ -65,8 +65,8 @@ async function loadHomes() {
         console.error('Error loading homes:', error);
         return;
     }
-    homeSelect.innerHTML = '<option value="">Select a home</option>';
-    editHomeSelect.innerHTML = '<option value="">Select a home</option>';
+    homeSelect.innerHTML = '<option value="">Select a route</option>';
+    editHomeSelect.innerHTML = '<option value="">Select a route</option>';
     data.forEach((home) => {
         const option = document.createElement('option');
         option.value = home.id;
