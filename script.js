@@ -36,14 +36,13 @@ async function loadRecords() {
         const card = document.createElement('div');
         card.classList.add('col-12', 'col-md-6', 'col-lg-4');
         card.innerHTML = `
-            <div class="record-card" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
+            <div class="record-card">
     <div style="display: flex; align-items: center; justify-content: space-between;">
-        <h5 style="margin: 0;">${record.name}</h5>
+        <h6 style="margin: 0;">${record.name}</h6>
         <button class="btn btn-warning btn-sm editButton" data-id="${record.id}" style="margin-left: 10px; padding: 5px 10px; font-size: 0.9rem;">
             <i class="fas fa-edit" data-id="${record.id}" style="font-size: 1rem;"></i>
         </button>
     </div>
-    <p style="margin: 0;"><strong>Contact:</strong> ${record.contact}</p>
     
     <div style="display: flex; align-items: center; justify-content: space-between;">
         <p style="margin: 5px 0;"><strong>Route:</strong> ${record.home.home_name}</p>
@@ -51,6 +50,7 @@ async function loadRecords() {
             <i class="fas fa-trash-alt" data-id="${record.id}" style="font-size: 1rem;"></i>
         </button>
     </div>
+</div>
         `;
         recordList.appendChild(card);
     });
