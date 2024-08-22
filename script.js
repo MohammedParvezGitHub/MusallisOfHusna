@@ -36,19 +36,21 @@ async function loadRecords() {
         const card = document.createElement('div');
         card.classList.add('col-12', 'col-md-6', 'col-lg-4');
         card.innerHTML = `
-            <div class="record-card">
-                <h5>${record.name}</h5>
-                <p><strong>Contact:</strong> ${record.contact}</p>
-                <p><strong>Route:</strong> ${record.home.home_name}</p>
-                <div class="actions">
-                    <button class="btn btn-warning btn-sm editButton" data-id="${record.id}">
-                        <i class="fas fa-edit" data-id="${record.id}"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm deleteButton" data-id="${record.id}">
-                        <i class="fas fa-trash-alt" data-id="${record.id}"></i>
-                    </button>
-                </div>
-            </div>
+            <div class="record-card" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h5 style="margin: 0;">${record.name}</h5>
+        <button class="btn btn-warning btn-sm editButton" data-id="${record.id}" style="margin-left: 10px; padding: 5px 10px; font-size: 0.9rem;">
+            <i class="fas fa-edit" data-id="${record.id}" style="font-size: 1rem;"></i>
+        </button>
+    </div>
+    <p style="margin: 0;"><strong>Contact:</strong> ${record.contact}</p>
+    
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <p style="margin: 5px 0;"><strong>Route:</strong> ${record.home.home_name}</p>
+        <button class="btn btn-danger btn-sm deleteButton" data-id="${record.id}" style="margin-left: 10px; padding: 5px 10px; font-size: 0.9rem;">
+            <i class="fas fa-trash-alt" data-id="${record.id}" style="font-size: 1rem;"></i>
+        </button>
+    </div>
         `;
         recordList.appendChild(card);
     });
