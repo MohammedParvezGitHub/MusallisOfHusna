@@ -44,7 +44,7 @@ async function loadRecords() {
         </button>
     </div>
     
-    <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex;align-items: center;justify-content: space-between;padding-bottom: 10px;">
         <p style="margin: 5px 0;"><strong>Route:</strong> ${record.home.home_name}</p>
         <button class="btn btn-danger btn-sm deleteButton" data-id="${record.id}" style="margin-left: 10px; padding: 5px 10px; font-size: 0.9rem;">
             <i class="fas fa-trash-alt" data-id="${record.id}" style="font-size: 1rem;"></i>
